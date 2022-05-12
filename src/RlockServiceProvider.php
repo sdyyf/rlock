@@ -2,9 +2,11 @@
 
 namespace Sdyyf\Rlock;
 
-use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use Illuminate\Foundation\Application as LaravelApplication;
+use Illuminate\Support\ServiceProvider;
+use Laravel\Lumen\Application as LumenApplication;
 
-class RlockServiceProvider extends BaseServiceProvider
+class RlockServiceProvider extends ServiceProvider
 {
     /**
      * 服务提供者加是否延迟加载.
@@ -21,9 +23,15 @@ class RlockServiceProvider extends BaseServiceProvider
     public function boot()
     {
         // 发布配置文件到 laravel 的 config 下
-        $this->publishes([
-            __DIR__ . '/../config/rlock.php' => base_path('config/rlock.php'),
-        ]);
+        $source = realpath($raw = __DIR__.'/../config/rlock.php') ?: $raw;
+    
+        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
+            $this->publishes([$source => config_path('rlock.php')]);
+        } elseif ($this->app instanceof LumenApplication) {
+            $this->app->configure('tinker');
+        }
+    
+        $this->mergeConfigFrom($source, 'rlock');
     }
 
     /**
