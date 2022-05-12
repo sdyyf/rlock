@@ -1,0 +1,30 @@
+{
+  "name": "sdyyf/rlock",
+  "description": "redis lock for laravel.",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Sdyyf\\Rlock\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "sdyyf",
+      "email": "dhdbuwl@126.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "illuminate/support": "5.5.*"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+          "Sdyyf\\Rlock\\RlockServiceProvider"
+      ],
+      "aliases": {
+        "Rlock": "Sdyyf\\Rlock\\Facades\\Rlock"
+      }
+    }
+  }
+}
