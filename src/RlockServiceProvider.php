@@ -28,7 +28,7 @@ class RlockServiceProvider extends ServiceProvider
         if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
             $this->publishes([$source => config_path('rlock.php')]);
         } elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('tinker');
+            $this->app->configure('rlock');
         }
     
         $this->mergeConfigFrom($source, 'rlock');
