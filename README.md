@@ -10,7 +10,7 @@ Laravel可通过如下命令发布配置文件
 
 如果你的项目没有vendor:publish命令，需要手动将配置文件复制到config目录下，配置文件路径：[项目根目录/vendor/sdyyf/rlock/config/rlock.php]
 
-##使用
+## 使用
 ### 配置
 根据你的项目实际情形，修改 config/rlock.php 配置文件
 ```
@@ -62,7 +62,7 @@ if ($lock->get()) {
 }
 ```
 
-####回调支持
+#### 回调支持
 ```
 $lock = Rlock::getSimpleLock('lockname', 10);
 //result为闭包执行结果，或者获取锁失败返回false
