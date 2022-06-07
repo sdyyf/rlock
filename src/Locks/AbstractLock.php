@@ -96,14 +96,11 @@ abstract class AbstractLock implements LockInterface
 
     /**
      * @return mixed
-     * @throws \Throwable
      */
     protected function runCallback(Closure $callback)
     {
         try {
             return call_user_func($callback);
-        } catch (\Throwable $throwable) {
-            throw $throwable;
         } finally {
             $this->release();
         }
