@@ -4,6 +4,7 @@ declare(strict_types = 1);
 namespace Sdyyf\Rlock;
 
 use Illuminate\Redis\Connections\PhpRedisConnection;
+use Illuminate\Redis\Connections\PredisConnection;
 use Sdyyf\Rlock\Contracts\LockInterface;
 use Sdyyf\Rlock\Locks\SpinLock;
 use Sdyyf\Rlock\Locks\SpinQueueLock;
@@ -45,9 +46,9 @@ class Rlock
     /**
      * getConnection
      *
-     * @return PhpRedisConnection
+     * @return PhpRedisConnection|PredisConnection
      */
-    public function getConnection() :PhpRedisConnection
+    public function getConnection()
     {
         return app('redis')->connection($this->connection);
     }

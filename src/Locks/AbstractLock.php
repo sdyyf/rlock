@@ -79,7 +79,7 @@ abstract class AbstractLock implements LockInterface
         if ($result) {
             $this->is_owner = true;
         }
-        return $result;
+        return (bool)$result;
     }
 
     public function isOwner() :bool
