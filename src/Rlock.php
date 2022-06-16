@@ -3,7 +3,7 @@ declare(strict_types = 1);
 
 namespace Sdyyf\Rlock;
 
-use Illuminate\Redis\Connections\Connection;
+use Illuminate\Contracts\Redis\Connection;
 use Sdyyf\Rlock\Contracts\LockInterface;
 use Sdyyf\Rlock\Locks\SpinLock;
 use Sdyyf\Rlock\Locks\SpinQueueLock;
@@ -47,7 +47,7 @@ class Rlock
      *
      * @return Connection
      */
-    public function getConnection()
+    public function getConnection() :Connection
     {
         return app('redis')->connection($this->connection);
     }
